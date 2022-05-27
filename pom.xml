@@ -10,6 +10,8 @@
     <modules>
         <module>site-mod</module>
         <module>uqingu-gateway</module>
+        <module>site-data</module>
+        <module>uqingu-utils</module>
     </modules>
     <packaging>pom</packaging>
 

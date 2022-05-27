@@ -1,0 +1,86 @@
+spring:
+  redis:
+    database: 3
+    timeout: 10000
+    host: 192.168.0.103
+    port: 6379
+    password: woainiMJG.0811
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true # 开启 Restful 请求
+    converters:
+      preferred-json-mapper: gson
+  application:
+    name: site-data
+  # 数据库配置
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.0.103:3306/uqingu?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: test
+    password: 123456
+    druid:
+      aop-patterns: com.uqingu.*
+      filters: stat,wall,slf4j
+      max-active: 10
+      #     开启监控页并隐藏重置按钮
+      stat-view-servlet:
+        enabled: true
+        login-password: 123456
+        login-username: admin
+        reset-enable: false
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+      filter:
+        stat: #sql监控
+          slow-sql-millis: 1000 # 默认3000毫秒，这里超过1s，就是慢，记录到日志
+          logSlowSql: true # 开启慢SQL记录功能
+          enabled: true # 开启DruidDataSource状态监控
+          db-type: mysql # 数据库的类型
+        wall: #防火墙
+          enabled: true
+          config:
+            drop-table-allow: false
+        slf4j:
+          enabled: true
+          statement-log-error-enabled: true
+          statement-create-after-log-enabled: false
+          statement-close-after-log-enabled: false
+          result-set-open-after-log-enabled: false
+          result-set-close-after-log-enabled: false
+  cache:
+    type: redis
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.0.103:8848
+        namespace: 760fd545-42fc-496d-882d-133431b4fb61
+        group: DEV_GROUP
+#设置feign客户端超时时间(OpenFeign默认支持ribbon)(单位：毫秒)
+ribbon:
+  #指的是建立连接所用的时间，适用于网络状况正常的情况下,两端连接所用的时间
+  ReadTimeout: 2000
+  #指的是建立连接后从服务器读取到可用资源所用的时间
+  ConnectTimeout: 3000
+# 配置mybatis规则
+mybatis:
+  mapper-locations: classpath:mapper/*.xml  #sql映射文件位置
+
+# 服务运行端口
+server:
+  port: 7001
+
+# 日志文件配置
+logging:
+  file:
+    name: log/site-data.log
+# spring-boot-starter-actuator配置
+management:
+  endpoints:
+    enabled-by-default: true #暴露所有端点信息
+    web:
+      exposure:
+        include: '*'  #以web方式暴露
