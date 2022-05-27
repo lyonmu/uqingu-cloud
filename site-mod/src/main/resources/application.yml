@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: site-mod
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.0.103:8848
+        namespace: 760fd545-42fc-496d-882d-133431b4fb61
+        group: DEV_GROUP
+# 日志文件配置
+logging:
+  file:
+    name: log/site-mod.log
+server:
+  port: 8001
+management:
+  endpoints:
+    enabled-by-default: true #暴露所有端点信息
+    web:
+      exposure:
+        include: '*'  #以web方式暴露
