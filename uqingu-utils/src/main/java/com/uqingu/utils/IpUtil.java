@@ -1,14 +1,12 @@
 package com.uqingu.utils;
 
 import cn.hutool.log.StaticLog;
-import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.*;
 import java.util.Enumeration;
 
 // 解析请求获取IP地址
-@Slf4j
 public class IpUtil {
     private static final String LOCAL_IP = "127.0.0.1";
 

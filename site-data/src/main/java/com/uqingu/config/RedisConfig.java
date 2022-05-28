@@ -25,8 +25,6 @@ public class RedisConfig {
         RedisTemplate<Object, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(connectionFactory);
 
-
-
         // 使用StringRedisSerializer来序列化和反序列化redis的key值,去除 key 的两端引号
         template.setKeySerializer(new StringRedisSerializer());
         template.setValueSerializer(serializer);
