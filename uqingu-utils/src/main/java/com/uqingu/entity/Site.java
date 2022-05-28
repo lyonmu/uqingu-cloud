@@ -1,6 +1,5 @@
 package com.uqingu.entity;
 
-import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -29,7 +28,7 @@ public class Site implements Serializable {
     /**
      * 系统自增id
      */
-    @TableId(value = "id")
+//    @TableId(value = "id")
     private Long id;
 
     /**
