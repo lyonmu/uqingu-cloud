@@ -19,7 +19,6 @@ public class SiteModController {
     @GetMapping("/get")
     public Site getUser() {
         Site site = siteModService.getUser();
-        System.out.println("测试连接仓库!");
         return site;
     }
 
